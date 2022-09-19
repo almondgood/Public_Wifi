@@ -11,13 +11,12 @@ import java.util.List;
 
 public class MariaDbHistoryDao implements HistoryDao {
 
+    private static final MariaDbHistoryDao instance = new MariaDbHistoryDao();
     @Override
     public List<History> selectHistoryList() {
         JdbcConnector jdbcConnector = JdbcConnector.builder()
                 .select("*", "my_location_history")
                 .build();
-
-        System.out.println(jdbcConnector);
 
         List<History> historyList = new ArrayList<>();
 
@@ -44,8 +43,6 @@ public class MariaDbHistoryDao implements HistoryDao {
                 .setParam(2, history.getLnt())
                 .setParam(3, history.getHistoryDateTime())
                 .executeAndClose();
-
-        System.out.println(JdbcConnector.builder());
     }
 
     @Override
@@ -54,7 +51,6 @@ public class MariaDbHistoryDao implements HistoryDao {
                 .delete("my_location_history", "id = ?")
                 .setParam(1, id)
                 .executeAndClose();
-        System.out.println(JdbcConnector.builder());
     }
 
     private History createHistory(ResultSet resultSet) {
@@ -75,5 +71,13 @@ public class MariaDbHistoryDao implements HistoryDao {
         }
 
         return history;
+    }
+
+
+    private MariaDbHistoryDao() {
+    }
+
+    public static MariaDbHistoryDao getInstance() {
+        return instance;
     }
 }

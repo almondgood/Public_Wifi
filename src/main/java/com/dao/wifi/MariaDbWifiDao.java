@@ -12,8 +12,10 @@ import java.util.List;
 
 public class MariaDbWifiDao implements WifiDao {
 
+    private static final MariaDbWifiDao instance = new MariaDbWifiDao();
+
     @Override
-    public List selectWifiList() {
+    public List<Wifi> selectWifiList() {
         List<Wifi> wifiList = new ArrayList<>();
 
         JdbcConnector jdbcConnector = JdbcConnector.builder()
@@ -83,5 +85,12 @@ public class MariaDbWifiDao implements WifiDao {
         }
 
         return wifi;
+    }
+
+    private MariaDbWifiDao() {
+    }
+
+    public static MariaDbWifiDao getInstance() {
+        return instance;
     }
 }

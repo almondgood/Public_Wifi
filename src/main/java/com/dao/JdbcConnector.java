@@ -5,6 +5,7 @@ import com.log.Logging;
 
 import java.sql.*;
 
+// TODO 커넥션 풀
 public class JdbcConnector {
     private Connection connection = null;
     private PreparedStatement statement = null;

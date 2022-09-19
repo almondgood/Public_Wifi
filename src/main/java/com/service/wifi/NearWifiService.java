@@ -6,12 +6,14 @@ import com.domain.Wifi;
 
 import java.util.*;
 
-public class PublicWifiService implements WifiService {
+public class NearWifiService implements WifiService {
+
+    private static final NearWifiService instance = new NearWifiService();
+
     private final int LIST_TOTAL_COUNT = 20; // 요구사항 개수
 
     public Map<Double, Queue<Wifi>> getNearWifiMap(double myLat, double myLnt) {
-        WifiConfig wifiConfig = new WifiConfig();
-        WifiDao wifiDao = wifiConfig.wifiDao();
+        WifiDao wifiDao = WifiConfig.wifiDao();
 
         List<Wifi> wifiList = wifiDao.selectWifiList();
 
@@ -107,5 +109,13 @@ public class PublicWifiService implements WifiService {
     }
 
     // 거리 계산 api
+
+
+    private NearWifiService() {
+    }
+
+    public static NearWifiService getInstance() {
+        return instance;
+    }
 }
 

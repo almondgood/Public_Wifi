@@ -14,12 +14,11 @@ import java.io.IOException;
 @WebServlet(name = "historyServlet", urlPatterns = "/history")
 public class HistoryServlet extends HttpServlet {
 
-    HistoryDao historyDao;
+    private HistoryDao historyDao;
 
     @Override
     public void init() {
-        WifiConfig wifiConfig = new WifiConfig();
-        historyDao =  wifiConfig.historyDao();
+        historyDao =  WifiConfig.historyDao();
     }
 
     @Override

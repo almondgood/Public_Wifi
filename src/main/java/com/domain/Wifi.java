@@ -3,10 +3,12 @@ package com.domain;
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 import org.jetbrains.annotations.NotNull;
 
 @Getter
 @AllArgsConstructor(staticName = "of")
+@ToString
 public class Wifi implements Comparable<Wifi>{
     @SerializedName("X_SWIFI_MGR_NO")
     private String mgrNo;        // 관리번호

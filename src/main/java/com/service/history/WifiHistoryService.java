@@ -8,13 +8,10 @@ import java.util.List;
 
 public class WifiHistoryService implements HistoryService{
 
-    WifiConfig wifiConfig;
-    HistoryDao historyDao;
+    private static final WifiHistoryService instance = new WifiHistoryService();
 
-    public WifiHistoryService() {
-        wifiConfig = new WifiConfig();
-        historyDao = wifiConfig.historyDao();
-    }
+    private final HistoryDao historyDao;
+
 
     @Override
     public List<History> loadHistoryList() {
@@ -24,5 +21,13 @@ public class WifiHistoryService implements HistoryService{
     @Override
     public void insertHistory(double lat, double lnt, String DateTime) {
         historyDao.insertHistory(History.of(lat, lnt, DateTime));
+    }
+
+    private WifiHistoryService() {
+        historyDao = WifiConfig.historyDao();
+    }
+
+    public static WifiHistoryService getInstance() {
+        return instance;
     }
 }

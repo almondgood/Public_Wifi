@@ -4,30 +4,51 @@ import com.api.ApiConnector;
 import com.api.WifiApiConnector;
 import com.api.detail.ApiDetail;
 import com.api.detail.WifiApiDetail;
-import com.api.parser.ApiJsonParser;
 import com.api.parser.ApiParser;
+import com.api.parser.WifiApiJsonParser;
 import com.dao.history.HistoryDao;
 import com.dao.history.MariaDbHistoryDao;
-import com.dao.wifi.WifiDao;
 import com.dao.wifi.MariaDbWifiDao;
+import com.dao.wifi.WifiDao;
+import com.server.WifiApiServer;
+import com.service.history.WifiHistoryService;
+import com.service.wifi.NearWifiService;
+import com.service.wifi.WifiService;
 
 public class WifiConfig {
 
-    public ApiConnector wifiApiConnector() {
-        return new WifiApiConnector(wifiApiDetail());
+    public static WifiApiServer wifiApiServer() {
+        return WifiApiServer.getInstance();
     }
 
-    private ApiDetail wifiApiDetail() {
-        return new WifiApiDetail();
+    public static ApiConnector wifiApiConnector() {
+        return WifiApiConnector.getInstance();
     }
 
-    public ApiParser apiJsonParser() {
-        return new ApiJsonParser();
+    public static ApiDetail wifiApiDetail() {
+        return WifiApiDetail.getInstance();
     }
 
-    public WifiDao wifiDao() {
-        return new MariaDbWifiDao();
+    public static ApiParser apiJsonParser() {
+        return WifiApiJsonParser.getInstance();
     }
 
-    public HistoryDao historyDao() { return new MariaDbHistoryDao();}
+    public static WifiDao wifiDao() {
+        return MariaDbWifiDao.getInstance();
+    }
+
+    public static HistoryDao historyDao() { return MariaDbHistoryDao.getInstance();}
+
+    public static WifiService wifiService() {
+        return NearWifiService.getInstance();
+    }
+
+    public static WifiHistoryService wifiHistoryService() {
+        return WifiHistoryService.getInstance();
+    }
+
+
+
+    private WifiConfig() {
+    }
 }
