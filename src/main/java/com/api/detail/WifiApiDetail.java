@@ -2,6 +2,8 @@ package com.api.detail;
 
 public class WifiApiDetail implements ApiDetail {
 
+    private static final WifiApiDetail instance = new WifiApiDetail();
+
     @Override
     public String url() {
         return "http://openapi.seoul.go.kr:8088";
@@ -25,4 +27,13 @@ public class WifiApiDetail implements ApiDetail {
     private String apiFileType() {
         return ApiFileType.json.toString();
     }
+
+
+    private WifiApiDetail() {
+    }
+
+    public static WifiApiDetail getInstance() {
+        return instance;
+    }
+
 }

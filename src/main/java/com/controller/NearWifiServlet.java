@@ -1,8 +1,7 @@
 package com.controller;
 
+import com.config.WifiConfig;
 import com.service.history.HistoryService;
-import com.service.history.WifiHistoryService;
-import com.service.wifi.PublicWifiService;
 import com.service.wifi.WifiService;
 
 import javax.servlet.RequestDispatcher;
@@ -19,13 +18,13 @@ import java.util.TreeMap;
 @WebServlet(name = "nearWifiServlet", urlPatterns = "/result")
 public class NearWifiServlet extends HttpServlet {
 
-    WifiService wifiService;
-    HistoryService historyService;
+    private WifiService wifiService;
+    private HistoryService historyService;
 
     @Override
     public void init() {
-        wifiService = new PublicWifiService();
-        historyService = new WifiHistoryService();
+        wifiService = WifiConfig.wifiService();
+        historyService = WifiConfig.wifiHistoryService();
     }
 
     @Override

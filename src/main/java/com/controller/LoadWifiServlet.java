@@ -1,6 +1,7 @@
 package com.controller;
 
 
+import com.config.WifiConfig;
 import com.server.WifiApiServer;
 
 import javax.servlet.RequestDispatcher;
@@ -17,7 +18,7 @@ public class LoadWifiServlet extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        WifiApiServer wifiApiServer = new WifiApiServer();
+        WifiApiServer wifiApiServer = WifiConfig.wifiApiServer();
         wifiApiServer.run();
 
         String viewPath = "/WEB-INF/views/load_data.jsp";

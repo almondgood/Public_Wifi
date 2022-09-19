@@ -2,9 +2,11 @@ package com.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.ToString;
 
 @Getter
 @AllArgsConstructor(staticName = "of")
+@ToString
 public class History {
 
     private int id;
