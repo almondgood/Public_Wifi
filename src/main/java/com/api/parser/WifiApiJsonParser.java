@@ -20,6 +20,11 @@ public class WifiApiJsonParser implements ApiParser {
         return Arrays.asList(getWifiArray(json));
     }
 
+    @Override
+    public int getListTotalCount() {
+        return listTotalCount;
+    }
+
     private Wifi[] getWifiArray(String json) {
         return new Gson().fromJson(getWifiJsonArray(json), Wifi[].class);
     }

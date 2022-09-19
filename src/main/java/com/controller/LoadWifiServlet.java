@@ -19,7 +19,9 @@ public class LoadWifiServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         WifiApiServer wifiApiServer = WifiConfig.wifiApiServer();
-        wifiApiServer.run();
+        int wifiTotalCount = wifiApiServer.run();
+
+        request.setAttribute("WifiTotalCount", wifiTotalCount);
 
         String viewPath = "/WEB-INF/views/load_data.jsp";
         RequestDispatcher dispatcher = request.getRequestDispatcher(viewPath);
