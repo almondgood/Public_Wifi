@@ -2,7 +2,9 @@ package com.api.parser;
 
 import com.domain.Wifi;
 
+import java.util.List;
+
 public interface ApiParser {
-    Wifi[] parsing(String file);
-    boolean isPageEnd(int endIndex);
+    List<Wifi> parsing(String file);
+    int getListTotalCount();
 }
